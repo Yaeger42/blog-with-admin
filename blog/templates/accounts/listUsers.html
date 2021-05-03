@@ -22,8 +22,8 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
-                    <td><a class="btn btn-primary" href= "">Edit</button></td>
-                    <td><a class="btn btn-danger" href="">Delete</button></td>    
+                    <td><a class="btn btn-primary" href= "/accounts/edit/{{ user.pk }}">Edit</button></td>
+                    <td><a class="btn btn-danger" href="/accounts/{{ user.pk }}/delete/">Delete</button></td>    
                 </tr>
             </tbody>
             {% endfor %}
