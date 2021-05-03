@@ -8,4 +8,22 @@ urlpatterns = [
         view = views.PostsFeedView.as_view(),
         name = 'feed'
     ),
+
+    path(
+        route = 'posts/new/',
+        view = views.PostsCreateView.as_view(),
+        name = 'create'
+    ),
+
+    path(
+        route = 'posts/edit/<pk>',
+        view = views.PostEditView.as_view(),
+        name = 'edit'
+    ),
+
+    path(
+        route = 'posts/<pk>/delete',
+        view = views.PostDeleteView.as_view(),
+        name = 'delete'
+    )
 ]
