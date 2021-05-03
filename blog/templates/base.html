@@ -3,14 +3,29 @@
     <head>
         <meta charset="UTF-8">
         {% load static %}
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Blog{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/99b321a709.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/jquery-confirm.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     </head>
     <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">C7 BLOG<i class="navbar-brand-icon fas fa-exclamation ml-1"></i></span>
+            </nav>
+        </header>
         <div class="container mt-5">
             {% block container %}
             {% endblock %}
         </div>
+        <footer class="text-center bg-light p-3">
+            <strong>C7 Blog &copy;2021</strong>
+        </footer>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery-confirm.min.js' %}"></script>
+        {% block js %}{% endblock %}
     </body>
 </html>

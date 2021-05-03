@@ -2,17 +2,33 @@
 
 
 {% block title %} 
-    Feed
+    Blog - Feed
 {% endblock %}
 
+
 {% block container %}
-    <div class="container">
-        <div class="row">
+    <div class="row">
         {% for post in posts %} 
-            {{ post.title }}
-            {{ post.body }} 
-            <img style="width: 100%" src = "{{ post.image.url }}" alt="{{ post.title }}">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-img-top card-img-container">
+                        <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-info">
+                            <span class="card-info-label">{{ post.category }}</span>
+                            <a href="#" class="btn card-info-button">
+                                Ver nota
+                            </a>
+                        </div>
+                        <h5 class="card-title">
+                            <i class="fas fa-circle"></i>
+                            {{ post.title }}
+                        </h5>
+                        <p class="card-text">{{ post.body | truncatechars:100 }}</p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </div>
     </div>
 {% endblock %}
