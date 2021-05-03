@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
 from posts.models import Post
 from posts.forms import PostForm
@@ -41,3 +41,18 @@ class PostEditView(LoginRequiredMixin, UpdateView):
     context_object_name = 'post'
     template_name = 'posts/edit.html'
     success_url = reverse_lazy('posts:feed')
+
+
+class PostDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'posts/detail.html'
+    model = Post
+    context_object_name = 'post'
+    
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user = owner)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context

@@ -25,5 +25,11 @@ urlpatterns = [
         route = 'posts/<pk>/delete',
         view = views.PostDeleteView.as_view(),
         name = 'delete'
+    ),
+    
+    path(
+        route = 'posts/<pk>',
+        view = views.PostDetailView.as_view(),
+        name = 'detail'
     )
 ]
