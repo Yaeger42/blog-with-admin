@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         {% load static %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" crossorigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Blog{% endblock %}</title>
         <script src="https://kit.fontawesome.com/99b321a709.js" crossorigin="anonymous"></script>
@@ -13,10 +15,19 @@
     <body>
         <header>
             <nav class="navbar navbar-light bg-light">
-                <span class="navbar-brand mb-0 h1">C7 BLOG<i class="navbar-brand-icon fas fa-exclamation ml-1"></i></span>
+                <a href="{% url 'posts:feed' %}" class="navbar-brand mb-0 h1">C7 BLOG<i class="navbar-brand-icon fas fa-exclamation ml-1"></i></a>
+                {% if user.username %}
+                    <a class="navbar-text" href="{% url 'logout' %}">
+                        Logout <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                {% else %}
+                    <a class="navbar-text" href="{% url 'login' %}">
+                        Login <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                {% endif %}
             </nav>
         </header>
-        <div class="container mt-5">
+        <div class="container my-5">
             {% block container %}
             {% endblock %}
         </div>

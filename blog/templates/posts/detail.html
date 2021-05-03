@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - {{ object.title }}{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <h4 class="mb-1">{{ post.title }}</h4>
+        <br>
+        <img style="width: 100%;" src = "{{ post.image.url }}" alt = "{{ post.title }}">
+        <p class="mb-1">{{ post.body }}</p>
+        <small>Creation date: {{ post.created }}</small>
+        <br>
+        <small>Created by: {{ post.user.username }}</small>
+        <br>
+        <a href="edit/{{ post.pk }}" style="margin-right: 10px;">Edit</a>
+        <a href="{{ post.pk }}/delete">Delete</a>
+    </div>
+{% endblock %}

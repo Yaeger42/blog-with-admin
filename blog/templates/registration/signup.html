@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Create a new user {% endblock %}
+
+{% block container %}
+    <h2>Create a new user</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <!--{% for i in form %}
+            <p>{{ i }}</p>
+        {% endfor %}-->
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Create a new user</button>
+    </form>
+{% endblock %}

@@ -42,3 +42,29 @@
 .card-text {
     white-space: break-spaces;
 }
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-anchor {
+    font-weight: bold;
+    color: var(--teal);
+    text-decoration: none;
+}
+
+.form-button-teal {
+    border: 1px solid var(--teal);
+    background-color: var(--white);
+    color: var(--teal);
+    width: 100%;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.form-button-teal:hover,
+.form-button-teal:active,
+.form-button-teal:focus {
+    color: var(--white);
+    background-color: var(--teal);
+}
