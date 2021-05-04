@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import RegisterNewUserView, UserPanelView, UserEditView, DeleteUserView
-
 urlpatterns = [
     path(
         route = 'signup/', 
