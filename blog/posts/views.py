@@ -43,7 +43,7 @@ class PostEditView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('posts:feed')
 
 
-class PostDetailView(LoginRequiredMixin, DetailView):
+class PostDetailView(DetailView):
     template_name = 'posts/detail.html'
     model = Post
     context_object_name = 'post'
