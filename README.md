@@ -10,7 +10,8 @@ Blog with user management made in Django
 If you want to use this db, then go to the folder called blog and inside that folder you should see a file structure like the following:
 ```blog/blog/settings.py``` open the settings.py file and then comment these lines: 
 
-```DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbmam6qalmegsc',
@@ -27,7 +28,8 @@ If you want to use this db, then go to the folder called blog and inside that fo
 If you want to use this db, then go to the folder called blog and inside that folder you should see a file structure like the following:
 ```blog/blog/settings.py``` open the settings.py file and then comment these lines: 
 
-```DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
