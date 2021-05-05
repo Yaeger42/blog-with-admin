@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4574yu%&)4@b!!c%c1(x*d28qf2$ud-o*f)p#ai%*@a9qtm2p)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fierce-eyrie-92665.herokuapp.com', '0.0.0.0:5000', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'glacial-island-54694.herokuapp.com', '0.0.0.0:5000', '0.0.0.0']
 
 
 # Application definition
@@ -76,19 +76,19 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd94d4vh115o5p1',
+        'NAME': 'dbmam6qalmegsc',
         'USER': os.environ['pguser'],
         'PASSWORD': os.environ['pgpassword'],
         'HOST': os.environ['pghost'],
@@ -96,7 +96,6 @@ DATABASES = {
 
     }
 }
-"""
 
 
 # Password validation
