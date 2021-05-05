@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Create a new user {% endblock %}
+{% block title %}Blog - Create a new user {% endblock %}
 
 {% block container %}
     <div class="row justify-content-center">
@@ -8,7 +8,7 @@
             <div class="card bg-light">
                 <div class="card-body">
                     <form method="POST">
-                        <h4 class="card-info-label mb-3">Edit user - {{ user.username }}</h4>
+                        <h4 class="card-info-label mb-3">New user</h4>
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="row justify-content-center">
