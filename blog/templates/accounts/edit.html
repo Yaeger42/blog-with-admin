@@ -1,51 +1,85 @@
 {% extends "base.html" %}
-{% block title %} Edit user {% endblock %}
+
+{% block title %}Blog - Edit user{% endblock %}
+
 {% block container %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="user" value="{{ user.pk }}" />
-    <div class="form-group">
-        <input
-        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-        type="text"
-        name="first_name"
-        placeholder="First Name"
-        value="{{ user.first_name }}"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.title.errors %}{{ error }}{% endfor %}
+    <div class="row justify-content-center">
+        <div class="col col-sm-6 col-md-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="user" value="{{ user.pk }}" />
+                        <h4 class="card-info-label mb-3">Edit user - {{ user.username }}</h4>
+                        <div class="form-group">
+                            <label class="form-label" for="id_first_name">
+                                <i class="fas fa-user"></i> First Name
+                            </label>
+                            <input
+                                id="id_first_name"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="first_name"
+                                placeholder="First Name"
+                                value="{{ user.first_name }}"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="form-label" for="id_last_name">
+                                <i class="fas fa-user"></i> Last Name
+                            </label>
+                            <input
+                                id="id_last_name"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="last_name"
+                                placeholder="Last Name"
+                                value = "{{ user.last_name }}"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="form-label" for="id_email">
+                                <i class="fas fa-at"></i> email
+                            </label>
+                            <input
+                                id="id_email"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="email"
+                                placeholder="email"
+                                value = "{{ user.email }}"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group text-center">
+                                    <a class="btn form-button-teal" href="{% url 'users:allUsers' %}">
+                                        <i class="fas fa-chevron-left"></i> Back
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn form-button-teal">
+                                        Save <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <input
-            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-            type="text"
-            name="last_name"
-            placeholder="Last Name"
-            value = "{{ user.last_name }}"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.title.errors %}{{ error }}{% endfor %}
-        </div>
-    </div>
-
-    <div class="form-group">
-        <input
-            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-            type="text"
-            name="email"
-            placeholder="email"
-            value = "{{ user.email }}"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.title.errors %}{{ error }}{% endfor %}
-        </div>
-    </div>
-
-
-    <button type="submit" class="btn btn-primary mt-5">Edit</button>
-</form>
-
-
 {% endblock %}

@@ -53,6 +53,12 @@
     text-decoration: none;
 }
 
+.form-button-clear {
+    width: 100%;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
 .form-button-teal {
     border: 1px solid var(--teal);
     background-color: var(--white);
@@ -67,4 +73,21 @@
 .form-button-teal:focus {
     color: var(--white);
     background-color: var(--teal);
+}
+
+.form-button-teal.floating {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 20px;
+}
+
+.img-view {
+    border: .5px solid var(--teal);
+    -webkit-box-shadow: -70px 70px 0 -40px var(--teal);
+    box-shadow: -70px 70px 0 -40px #20c99785;
+}
+
+.img-thumb {
+    max-width: 200px;
 }

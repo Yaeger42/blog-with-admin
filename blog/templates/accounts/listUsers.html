@@ -1,37 +1,85 @@
 {% extends "base.html" %}
-{% block title %} Users list {% endblock %}
-{% block container%}
 
-<div class="container">
-    <div class="table-responsive">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                <tr>
-                    <th scope="row">{{ user.username }}</th>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.first_name }}</td>
-                    <td>{{ user.last_name }}</td>
-                    <td><a class="btn btn-primary" href= "/accounts/edit/{{ user.pk }}">Edit</button></td>
-                    <td><a class="btn btn-danger" href="/accounts/{{ user.pk }}/delete/">Delete</button></td>    
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
+{% block title %}Blog - Users list{% endblock %}
+
+{% block container%}
+<div class="row">
+    <div class="col position-relative">
+        <h4 class="card-info-label mb-3">User list</h4>
+        <a href="{% url 'users:signup' %}" class="btn form-button-teal floating">
+            <i class="fas fa-plus"></i> Add User
+        </a>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr scope="row">
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr scope="row">
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>
+                            <a role="edit" class="btn btn-info" href= "{% url 'users:edit' user.pk %}">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a role="delete" class="btn btn-danger" href="{% url 'users:delete' user.pk %}">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
     </div>
-    
 </div>
-<!-- /coach/edit/{{ coach.pk }}
-/coach/{{ coach.pk }}/delete/
--->
+{% endblock %}
+
+{% block js %}
+<script>
+    $(function() {
+        $('.table')
+        .on('click', '[role="delete"]', function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            let $loading = showLoading();
+
+            $.get($(this).attr('href'), function(html) {
+                $.confirm({
+                    type: 'red',
+                    columnClass: 'medium',
+                    icon: 'fas fa-exclamation-triangle',
+                    title: 'Attention!',
+                    content: html,
+                    buttons: {
+                        back: { 
+                            text: '<i class="fas fa-chevron-left mr-2"></i> Back'
+                        },
+                        accept: {
+                            btnClass: 'btn-danger',
+                            text: 'Delete <i class="fas fa-trash ml-2"></i>',
+                            action: function() {
+                                let $loading = showLoading();
+
+                                this.$content.find('form').submit();
+                            }
+                        }
+                    }
+                });
+
+                $loading.close();
+            });
+        })
+    });
+</script>
 {% endblock %}

@@ -3,73 +3,93 @@
 {% block title %} Create a new post {% endblock %}
 
 {% block container %}
-
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-6 pt-3 pb-3" id="profile-box">
-                <h4 class="mb-4">Create a new post</h4>
-
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                    <input type="hidden" name="user" value="{{ user.pk}}" />
-
-                    {# Website field #}
-                    <div class="form-group">
-                        <input
-                            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-                            type="text"
-                            name="title"
-                            placeholder="Title"
-                        >
-                        <div class="invalid-feedback">
-                            {% for error in form.title.errors %}{{ error }}{% endfor %}
+    <div class="row justify-content-center">
+        <div class="col col-md-10">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="user" value="{{ user.pk}}" />
+                        <h4 class="card-info-label mb-3">Create a new post</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_title">
+                                        <i class="fas fa-bookmark"></i> Title
+                                    </label>
+                                    <input
+                                        id="id_title"
+                                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                        type="text"
+                                        name="title"
+                                        placeholder="Title"
+                                    >
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="id_category">
+                                        <i class="fas fa-tag"></i> Category
+                                    </label>
+                                    <input
+                                        id="id_category"
+                                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                        type="text"
+                                        name="category"
+                                        placeholder="Category"
+                                    >
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_image">
+                                        <i class="fas fa-image"></i> Image
+                                    </label>
+                                    <input
+                                        id="id_image"
+                                        class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
+                                        type="file"
+                                        name="image"
+                                        placeholder="image"
+                                    >
+                                    <div class="invalid-feedback">
+                                        {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input
-                            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-                            type="text"
-                            name="category"
-                            placeholder="Category"
-                        >
-                        <div class="invalid-feedback">
-                            {% for error in form.title.errors %}{{ error }}{% endfor %}
+                        <div class="form-group">
+                            <label class="form-label" for="id_body">
+                                <i class="far fa-keyboard"></i> Body
+                            </label>
+                            <textarea
+                                id="id_body"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="textarea"
+                                name="body"
+                                placeholder="Body"
+                                rows="15"
+                            ></textarea>
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
                         </div>
-                    </div>
-
-                    {# Photo field #}
-                    <div class="form-group">
-                        <label>Choose your image:</label>
-                        <input
-                            class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
-                            type="file"
-                            name="image"
-                            placeholder="image"
-                        >
-                        <div class="invalid-feedback">
-                            {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn form-button-teal">
+                                        Publish! <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea
-                            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-                            type="textarea"
-                            name="body"
-                            placeholder="Body"
-                            rows="20"
-                        ></textarea>
-                        <div class="invalid-feedback">
-                            {% for error in form.title.errors %}{{ error }}{% endfor %}
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block mt-5">Publish!</button>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
 {% endblock %}

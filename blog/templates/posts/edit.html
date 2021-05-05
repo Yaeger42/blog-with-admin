@@ -1,59 +1,106 @@
 {% extends "base.html" %}
-{% block title %}
-Edit {{ post.title }}
-{% endblock %}
+
+{% block title %}Edit - {{ post.title }}{% endblock %}
+
 {% block container %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="user" value="{{ user.pk }}" />
-    <div class="form-group">
-        <input
-        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-        type="text"
-        name="title"
-        placeholder="Title"
-        value="{{ post.title }}"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.title.errors %}{{ error }}{% endfor %}
+    <div class="row justify-content-center">
+        <div class="col col-md-10">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="user" value="{{ user.pk }}" />
+                        <h4 class="card-info-label mb-3">Edit post</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_title">
+                                        <i class="fas fa-bookmark"></i> Title
+                                    </label>
+                                    <input
+                                        id="id_title"
+                                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                        type="text"
+                                        name="title"
+                                        placeholder="Title"
+                                        value="{{ post.title }}"
+                                    >
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="form-label" for="id_category">
+                                        <i class="fas fa-tag"></i> Category
+                                    </label>
+                                    <input
+                                        id="id_category"
+                                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                        type="text"
+                                        name="category"
+                                        placeholder="Category"
+                                        value="{{ post.category }}"
+                                    >
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_image">
+                                        <i class="fas fa-image"></i> Image
+                                    </label>
+                                    <div class="input-group">
+                                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-thumbnail img-thumb">
+                                        <input
+                                            id="id_image"
+                                            class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
+                                            type="file"
+                                            name="image"
+                                            placeholder="image"
+                                        >
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="id_body">
+                                <i class="far fa-keyboard"></i> Body
+                            </label>
+                            <textarea 
+                                id="id_body"
+                                class="form-control mb-3"
+                                type="text"
+                                name="body"
+                                rows="15"
+                                placeholder="Body"
+                            >{{ post.body }}</textarea>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group text-center">
+                                    <a class="btn form-button-teal" href="{% url 'posts:detail' post.id %}">
+                                        <i class="fas fa-chevron-left"></i> Back
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn form-button-teal">
+                                        Save <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <input
-            class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-            type="text"
-            name="category"
-            placeholder="Category"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.title.errors %}{{ error }}{% endfor %}
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>Choose your image:</label>
-        <input
-            class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
-            type="file"
-            name="image"
-            placeholder="image"
-        >
-        <div class="invalid-feedback">
-            {% for error in form.photo.errors %}{{ error }}{% endfor %}
-        </div>
-    </div>
-
-    <div class="input-group">
-        <div class="input-group-prepend">
-        </div>
-        <textarea 
-            class="form-control mb-3"
-            type="text"
-            name="body"
-            rows="20"
-            placeholder="Body"> {{ post.body }}</textarea>
-    </div>
-    <button type="submit" class="btn btn-primary mt-5">Edit</button>
-</form>
 {% endblock %}
