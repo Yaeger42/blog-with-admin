@@ -68,6 +68,12 @@ py manage.py makemigrations
 py manage.py migrate --run-syncdb
 ```
 
+Create a superuser with:
+```powershell
+python3 manage.py createsuperuser
+```
+
+
 Start the development server
 ```powershell
 py manage.py runserver
@@ -96,7 +102,14 @@ python3 manage.py makemigrations
 python3 manage.py migrate --run-syncdb
 ```
 
+Create a superuser with:
+```bash
+python3 manage.py createsuperuser
+```
+
+
 Start the development server
 ```bash
 python3 manage.py runserver
 ```
+
