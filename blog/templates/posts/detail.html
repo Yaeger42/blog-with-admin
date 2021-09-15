@@ -5,7 +5,9 @@
 {% block container %}
     <div class="row">
         <div class="col text-center">
+            {% if post.image %}
             <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
+            {% endif %}
         </div>
         <div class="col">
             <div class="card bg-light">
