@@ -15,14 +15,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_title">
-                                        <i class="fas fa-bookmark"></i> Title
+                                        <i class="fas fa-bookmark"></i> Título
                                     </label>
                                     <input
                                         id="id_title"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="title"
-                                        placeholder="Title"
+                                        placeholder="Título"
                                         value="{{ post.title }}"
                                     >
                                     <div class="invalid-feedback">
@@ -32,14 +32,14 @@
                             
                                 <div class="form-group">
                                     <label class="form-label" for="id_category">
-                                        <i class="fas fa-tag"></i> Category
+                                        <i class="fas fa-tag"></i> Categoría
                                     </label>
                                     <input
                                         id="id_category"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="category"
-                                        placeholder="Category"
+                                        placeholder="Categoría"
                                         value="{{ post.category }}"
                                     >
                                     <div class="invalid-feedback">
@@ -50,7 +50,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_image">
-                                        <i class="fas fa-image"></i> Image
+                                        <i class="fas fa-image"></i> Imagen
                                     </label>
                                     <div class="input-group">
                                         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-thumbnail img-thumb">
@@ -59,7 +59,7 @@
                                             class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                                             type="file"
                                             name="image"
-                                            placeholder="image"
+                                            placeholder="imagen"
                                         >
                                     </div>
                                     <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                         
                         <div class="form-group">
                             <label class="form-label" for="id_body">
-                                <i class="far fa-keyboard"></i> Body
+                                <i class="far fa-keyboard"></i> Cuerpo
                             </label>
                             <textarea 
                                 id="id_body"
@@ -79,21 +79,21 @@
                                 type="text"
                                 name="body"
                                 rows="15"
-                                placeholder="Body"
+                                placeholder="Cuerpo"
                             >{{ post.body }}</textarea>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <a class="btn form-button-teal" href="{% url 'posts:detail' post.id %}">
-                                        <i class="fas fa-chevron-left"></i> Back
+                                        <i class="fas fa-chevron-left"></i> Regresar
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn form-button-teal">
-                                        Save <i class="fas fa-check"></i>
+                                        Guardar <i class="fas fa-check"></i>
                                     </button>
                                 </div>
                             </div>

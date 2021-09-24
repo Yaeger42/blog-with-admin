@@ -7,16 +7,14 @@
         {% for post in posts %} 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card bg-light mb-3">
-                    {% if post.image %}
                     <div class="card-img-top card-img-container">
                         <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
                     </div>
-                    {% endif %}
                     <div class="card-body">
                         <div class="card-info">
                             <span class="card-info-label">{{ post.category }}</span>
                             <a href="{% url 'posts:detail' post.id %}" class="btn card-info-button">
-                                View post <i class="form-anchor fas fa-chevron-right"></i>
+                                Ver publicación <i class="form-anchor fas fa-chevron-right"></i>
                             </a>
                         </div>
                         <h5 class="card-title">

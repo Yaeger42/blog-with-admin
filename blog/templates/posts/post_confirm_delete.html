@@ -1,5 +1,5 @@
 <form method="POST" enctype="multipart/form-data" action="{{ request.path }}">
     {% csrf_token %}
     <input type="hidden" name="user" value="{{ user.pk }}" />
-    <h5>Are you sure you want to delete your post {{ object.title }}?</h5>
+    <h5>¿Estas seguro de que quieres eliminar tu publicación{{ object.title }}?</h5>
 </form>
