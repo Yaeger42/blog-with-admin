@@ -34,6 +34,9 @@
                                 <a class="nav-link" href="{% url 'users:allUsers' %}">Usuarios</a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/posts/info">Información</a>
+                        </li>
                     </ul>
                 </div>
                 {% if user.is_authenticated %}

@@ -1,14 +1,16 @@
 from django.urls import path 
 
 from posts import views
-
+from .views import show_info
 urlpatterns = [
     path(
         route = '',
         view = views.PostsFeedView.as_view(),
         name = 'feed'
     ),
-
+    path(
+        'posts/info', show_info
+    ),
     path(
         route = 'posts/new/',
         view = views.PostsCreateView.as_view(),

@@ -24,7 +24,9 @@ class PostsFeedView(ListView):
     ordering = ('-created')
     paginate_by = 20
     context_object_name = 'posts'
-
+    
+def show_info(request):
+    return render(request, "posts/info.html", {})
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
