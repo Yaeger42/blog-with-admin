@@ -3,82 +3,101 @@
 {% block title %}Blog - {{ object.title }}{% endblock %}
 
 {% block container %}
-    <div class="row">
-        <div class="col text-center">
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
-            {% endif %}
-        </div>
-        <div class="col">
-            <div class="card bg-light">
-                <div class="card-body">
-                    <div class="card-info">
-                        <span class="card-info-label">{{ post.category }}</span>
-                    </div>
-                    <h4 class="card-title">
-                        <i class="fas fa-circle"></i>
-                        {{ post.title }}
-                    </h4>
-                    <p class="card-text">{{ post.body }}</p>
-                    <small>Creation date: {{ post.created }}</small>
-                    <br>
-                    <small>Created by: {{ post.user.username }}</small>
-                    {% if user.is_authenticated %}
-                        <div class="row mt-3">
-                            <div class="col">
-                                <a class="btn form-button-teal" href="{% url 'posts:edit' post.pk %}">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="btn form-button-teal" role="delete" href="{% url 'posts:delete' post.pk %}">
-                                    Delete <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    {% endif %}
+<div class="row">
+    <div class="col text-center">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}" width="600" , height="600">
+        {% endif %}
+    </div>
+    <div class="col">
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="card-info">
+                    <span class="card-info-label">{{ post.category }}</span>
                 </div>
+                <h4 class="card-title">
+                    <i class="fas fa-circle"></i>
+                    {{ post.title }}
+                </h4>
+                <p class="card-text">{{ post.body }}</p>
+                <small>Creation date: {{ post.created }}</small>
+                <br>
+                <small>Created by: {{ post.user.username }}</small>
+                {% if user.is_authenticated %}
+                <div class="row mt-3">
+                    <div class="col">
+                        <a class="btn form-button-teal" href="{% url 'posts:edit' post.pk %}">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a class="btn form-button-teal" role="delete" href="{% url 'posts:delete' post.pk %}">
+                            Delete <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% if post.facebookVideoLink %}
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"
+            nonce="sIKVz85m"></script>
+        <div class="fb-video" data-href="{{ post.facebookVideoLink }}" data-width="700"
+            data-show-text="false">
+            <blockquote cite="{{ post.facebookVideoLink }}" class="fb-xfbml-parse-ignore">
+                <a href="{{ post.facebookVideoLink }}">How to Share With Just Friends</a>
+                <p>How to share with just friends.</p>Posted by <a href="{{ post.user.username }}">Facebook
+                    App</a> on Friday, December 5, 2014
+            </blockquote>
+        </div>
+    {% endif %}
+    {% if post.facebookLiveVideoLink %}
+        <div id="fb-root"></div>
+        <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+        <div class="fb-video" data-href="{{ post.facebookLiveVideoLink }}"  
+        data-allowfullscreen="true" data-width="900"></div>
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block js %}
 <script>
-    $(function() {
+    $(function () {
         $('.card')
-        .on('click', '[role="delete"]', function(e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
+            .on('click', '[role="delete"]', function (e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
 
-            let $loading = showLoading();
+                let $loading = showLoading();
 
-            $.get($(this).attr('href'), function(html) {
-                $.confirm({
-                    type: 'red',
-                    columnClass: 'medium',
-                    icon: 'fas fa-exclamation-triangle',
-                    title: 'Attention!',
-                    content: html,
-                    buttons: {
-                        back: { 
-                            text: '<i class="fas fa-chevron-left mr-2"></i> Back'
-                        },
-                        accept: {
-                            btnClass: 'btn-danger',
-                            text: 'Delete <i class="fas fa-trash ml-2"></i>',
-                            action: function() {
-                                let $loading = showLoading();
+                $.get($(this).attr('href'), function (html) {
+                    $.confirm({
+                        type: 'red',
+                        columnClass: 'medium',
+                        icon: 'fas fa-exclamation-triangle',
+                        title: 'Attention!',
+                        content: html,
+                        buttons: {
+                            back: {
+                                text: '<i class="fas fa-chevron-left mr-2"></i> Back'
+                            },
+                            accept: {
+                                btnClass: 'btn-danger',
+                                text: 'Delete <i class="fas fa-trash ml-2"></i>',
+                                action: function () {
+                                    let $loading = showLoading();
 
-                                this.$content.find('form').submit();
+                                    this.$content.find('form').submit();
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-                $loading.close();
+                    $loading.close();
+                });
             });
-        });
     });
 </script>
 {% endblock %}

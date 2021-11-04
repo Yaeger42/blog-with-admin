@@ -47,12 +47,14 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if post.image %}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_image">
                                         <i class="fas fa-image"></i> Image
                                     </label>
                                     <div class="input-group">
+                                        
                                         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-thumbnail img-thumb">
                                         <input
                                             id="id_image"
@@ -67,7 +69,42 @@
                                     </div>
                                 </div>        
                             </div>
+                            {% endif %}
                         </div>
+                        {% if post.facebookLiveVideoLink %}
+                        <div class="form-group">
+                            <label class="form-label" for="id_facebookLiveVideoLink">
+                                <i class="fas fa-link"></i> Facebook Live Video Link
+                            </label>
+                            <input
+                                id="id_facebookLiveVideoLink"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="facebookLiveVideoLink"
+                                placeholder="Facebook Live Video Link (optional)"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.facebookLiveVideoLink.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if post.facebookVideoLink %}
+                        <div class="form-group">
+                            <label class="form-label" for="id_facebookVideoLink">
+                                <i class="fas fa-link"></i> Facebook Video Link
+                            </label>
+                            <input
+                                id="id_facebookVideoLink"
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="facebookVideoLink"
+                                placeholder="Facebook Video Link (optional)"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.facebookVideoLink.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
                         
                         <div class="form-group">
                             <label class="form-label" for="id_body">
