@@ -45,5 +45,71 @@ If you chosed to go with this option then you're going to need to create a few e
 
 Fill those environment variables with your own settings
 
-Finally, navigate to the blog folder and inside there run:
-``` $ gunicorn blog.wsgi ``` and see it run
+## How to run the project (windows)
+Create a virtual environment (windows)
+In a new powershell navigate to the project folder and run
+```powershell
+py -m venv env
+```
+
+Activate the environment
+```
+env\Scripts\activate
+```
+
+Install the requirements
+```powershell
+pip install -r requirements.txt
+```
+
+Migrate the db
+```powershell
+py manage.py makemigrations
+py manage.py migrate --run-syncdb
+```
+
+Create a superuser with:
+```powershell
+python3 manage.py createsuperuser
+```
+
+
+Start the development server
+```powershell
+py manage.py runserver
+```
+
+## How to run the project (linux)
+Create a virtual environment (linux)
+In a new powershell navigate to the project folder and run
+```bash
+python3 -m venv env
+```
+
+Activate the environment
+```bash
+source env/bin/activate
+```
+
+Install the requirements
+```bash
+pip install -r requirements.txt
+```
+
+Migrate the db
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate --run-syncdb
+```
+
+Create a superuser with:
+```bash
+python3 manage.py createsuperuser
+```
+
+
+Start the development server
+```bash
+python3 manage.py runserver
+```
+
