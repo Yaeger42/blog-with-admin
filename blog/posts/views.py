@@ -25,6 +25,24 @@ class PostsFeedView(ListView):
     paginate_by = 20
     context_object_name = 'posts'
     
+class EventsFeedView(ListView):
+    template_name = 'posts/eventsfeed.html'
+    model = Post
+    ordering = ('-created')
+    paginate_by = 20
+    context_object_name = 'posts'
+
+class EventsCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'posts/events.html'
+    form_class = PostForm
+    success_url = reverse_lazy('posts:eventsfeed')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
+
 def show_info(request):
     return render(request, "posts/info.html", {})
 

@@ -10,7 +10,7 @@
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="user" value="{{ user.pk }}" />
-                        <h4 class="card-info-label mb-3">Editar post</h4>
+                        <h4 class="card-info-label mb-3">Editar</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -29,7 +29,7 @@
                                         {% for error in form.title.errors %}{{ error }}{% endfor %}
                                     </div>
                                 </div>
-                            
+                                
                                 <div class="form-group">
                                     <label class="form-label" for="id_category">
                                         <i class="fas fa-tag"></i> Categoría
@@ -46,6 +46,19 @@
                                         {% for error in form.title.errors %}{{ error }}{% endfor %}
                                     </div>
                                 </div>
+                                {% if post.eventType == 2 %} 
+                                <div class="form-group">
+                                    <label class="form-label" for="id_eventDateTime">
+                                        <i class="fas fa-calendar-week"></i></i> Fecha y hora
+                                    </label>
+                                    <input type="datetime-local" id="id_eventDateTime" name="eventDateTime"
+                                
+                                    min="2021-02-11" max="2040-12-31">
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}     
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

@@ -10,3 +10,5 @@ class Post(models.Model):
     body = models.TextField(max_length=3000)
     created = models.DateTimeField(auto_now_add = True)
     lastUpdated = models.DateTimeField(auto_now = True)
+    eventDateTime = models.DateTimeField(null=True,blank =True,auto_now_add=False, auto_now=False)
+    eventType= models.IntegerField(blank =True)

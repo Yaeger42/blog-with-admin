@@ -12,6 +12,16 @@ urlpatterns = [
         'posts/info', show_info
     ),
     path(
+        route = 'posts/eventsfeed/',
+        view = views.EventsFeedView.as_view(),
+        name = 'eventsfeed'
+    ),
+    path(
+        route = 'posts/events/',
+        view = views.EventsCreateView.as_view(),
+        name = 'createevent'
+    ),
+    path(
         route = 'posts/new/',
         view = views.PostsCreateView.as_view(),
         name = 'create'

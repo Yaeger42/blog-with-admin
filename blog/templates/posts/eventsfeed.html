@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Blog - Inicio{% endblock %}
+{% block title %}Blog - Eventos{% endblock %}
 
 {% block container %}
+    
     <div class="row">
         {% for post in posts %} 
-            {% if post.eventType == 1 %} 
+            {% if post.eventType == 2 %} 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card bg-wgite mb-3">
                     <div class="card-img-top card-img-container">
@@ -15,20 +16,22 @@
                         <div class="card-info">
                             <span class="card-info-label">{{ post.category }}</span>
                             <a href="{% url 'posts:detail' post.id %}" class="btn card-info-button">
-                                Ver publicación <i class="form-anchor fas fa-chevron-right" style="color:#E07A0D"></i>
+                                Ver evento <i class="form-anchor fas fa-chevron-right" style="color:#E07A0D"></i>
                             </a>
                         </div>
                         <h5 class="card-title">
                             <i class="fas fa-circle" style="color:#E07A0D"></i>
                             {{ post.title }}
                         </h5>
-                        
+                        <h6 class="card-title">
+                            <i class="fas fa-calendar-week" style="color:#E07A0D"></i>
+                            {{ post.eventDateTime }}
+                        </h6>
                         <p class="card-text">{{ post.body | truncatechars:100 }}</p>
                     </div>
                 </div>
             </div>
-            {% endif %}  
+            {% endif %}
         {% endfor %}
-
     </div>
 {% endblock %}

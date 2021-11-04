@@ -31,11 +31,17 @@
                                 <a class="nav-link" href="{% url 'posts:create' %}">Crear publicación</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'posts:createevent' %}">Crear evento</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'users:allUsers' %}">Usuarios</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="/posts/info">Información</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'posts:eventsfeed' %}">Eventos</a>
                         </li>
                     </ul>
                 </div>

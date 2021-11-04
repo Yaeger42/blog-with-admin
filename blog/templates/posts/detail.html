@@ -8,15 +8,21 @@
             <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
         </div>
         <div class="col">
-            <div class="card bg-light">
+            <div class="card bg-white">
                 <div class="card-body">
                     <div class="card-info">
                         <span class="card-info-label">{{ post.category }}</span>
                     </div>
                     <h4 class="card-title">
-                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle" style="color:#E07A0D"></i>
                         {{ post.title }}
                     </h4>
+                    {% if post.eventType == 2 %} 
+                    <h6 class="card-title">
+                        <i class="fas fa-calendar-week" style="color:#E07A0D"></i>
+                        {{ post.eventDateTime }}
+                    </h6>
+                    {% endif %}
                     <p class="card-text">{{ post.body }}</p>
                     <small>Fecha de creación: {{ post.created }}</small>
                     <br>
