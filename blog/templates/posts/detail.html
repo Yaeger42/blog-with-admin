@@ -4,9 +4,11 @@
 
 {% block container %}
     <div class="row">
-        <div class="col text-center">
-            <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
-        </div>
+        {% if post.image %}
+            <div class="col text-center">
+                <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
+            </div>
+        {% endif %}
         <div class="col">
             <div class="card bg-white">
                 <div class="card-body">
@@ -42,7 +44,6 @@
                         </div>
                     {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>

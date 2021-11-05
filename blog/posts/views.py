@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
+from django.shortcuts import render
 
 from posts.models import Post
 from posts.forms import PostForm
