@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Edit - {{ post.title }}{% endblock %}
+{% block title %}Editar - {{ post.title }}{% endblock %}
 
 {% block container %}
     <div class="row justify-content-center">
@@ -10,48 +10,61 @@
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="user" value="{{ user.pk }}" />
-                        <h4 class="card-info-label mb-3">Edit post</h4>
+                        <h4 class="card-info-label mb-3">Editar</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_title">
-                                        <i class="fas fa-bookmark"></i> Title
+                                        <i class="fas fa-bookmark"></i> Título
                                     </label>
                                     <input
                                         id="id_title"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="title"
-                                        placeholder="Title"
+                                        placeholder="Título"
                                         value="{{ post.title }}"
                                     >
                                     <div class="invalid-feedback">
                                         {% for error in form.title.errors %}{{ error }}{% endfor %}
                                     </div>
                                 </div>
-                            
+                                
                                 <div class="form-group">
                                     <label class="form-label" for="id_category">
-                                        <i class="fas fa-tag"></i> Category
+                                        <i class="fas fa-tag"></i> Categoría
                                     </label>
                                     <input
                                         id="id_category"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="category"
-                                        placeholder="Category"
+                                        placeholder="Categoría"
                                         value="{{ post.category }}"
                                     >
                                     <div class="invalid-feedback">
                                         {% for error in form.title.errors %}{{ error }}{% endfor %}
                                     </div>
                                 </div>
+                                {% if post.eventType == 2 %} 
+                                <div class="form-group">
+                                    <label class="form-label" for="id_eventDateTime">
+                                        <i class="fas fa-calendar-week"></i></i> Fecha y hora
+                                    </label>
+                                    <input type="datetime-local" id="id_eventDateTime" name="eventDateTime"
+                                
+                                    min="2021-02-11" max="2040-12-31">
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}     
                             </div>
                             {% if post.image %}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_image">
-                                        <i class="fas fa-image"></i> Image
+                                        <i class="fas fa-image"></i> Imagen
                                     </label>
                                     <div class="input-group">
                                         
@@ -61,7 +74,7 @@
                                             class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                                             type="file"
                                             name="image"
-                                            placeholder="image"
+                                            placeholder="imagen"
                                         >
                                     </div>
                                     <div class="invalid-feedback">
@@ -108,7 +121,7 @@
                         
                         <div class="form-group">
                             <label class="form-label" for="id_body">
-                                <i class="far fa-keyboard"></i> Body
+                                <i class="far fa-keyboard"></i> Cuerpo
                             </label>
                             <textarea 
                                 id="id_body"
@@ -116,21 +129,21 @@
                                 type="text"
                                 name="body"
                                 rows="15"
-                                placeholder="Body"
+                                placeholder="Cuerpo"
                             >{{ post.body }}</textarea>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <a class="btn form-button-teal" href="{% url 'posts:detail' post.id %}">
-                                        <i class="fas fa-chevron-left"></i> Back
+                                        <i class="fas fa-chevron-left"></i> Regresar
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn form-button-teal">
-                                        Save <i class="fas fa-check"></i>
+                                        Guardar <i class="fas fa-check"></i>
                                     </button>
                                 </div>
                             </div>

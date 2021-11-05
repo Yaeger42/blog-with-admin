@@ -3,38 +3,44 @@
 {% block title %}Blog - {{ object.title }}{% endblock %}
 
 {% block container %}
-<div class="row">
-    <div class="col text-center">
-        {% if post.image %}
-        <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}" width="600" , height="600">
-        {% endif %}
-    </div>
-    <div class="col">
-        <div class="card bg-light">
-            <div class="card-body">
-                <div class="card-info">
-                    <span class="card-info-label">{{ post.category }}</span>
-                </div>
-                <h4 class="card-title">
-                    <i class="fas fa-circle"></i>
-                    {{ post.title }}
-                </h4>
-                <p class="card-text">{{ post.body }}</p>
-                <small>Creation date: {{ post.created }}</small>
-                <br>
-                <small>Created by: {{ post.user.username }}</small>
-                {% if user.is_authenticated %}
-                <div class="row mt-3">
-                    <div class="col">
-                        <a class="btn form-button-teal" href="{% url 'posts:edit' post.pk %}">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
+    <div class="row">
+        <div class="col text-center">
+            <img src="{{ post.image.url }}" class="img-fluid img-view" alt="{{ post.title }}">
+        </div>
+        <div class="col">
+            <div class="card bg-white">
+                <div class="card-body">
+                    <div class="card-info">
+                        <span class="card-info-label">{{ post.category }}</span>
                     </div>
-                    <div class="col">
-                        <a class="btn form-button-teal" role="delete" href="{% url 'posts:delete' post.pk %}">
-                            Delete <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
+                    <h4 class="card-title">
+                        <i class="fas fa-circle" style="color:#E07A0D"></i>
+                        {{ post.title }}
+                    </h4>
+                    {% if post.eventType == 2 %} 
+                    <h6 class="card-title">
+                        <i class="fas fa-calendar-week" style="color:#E07A0D"></i>
+                        {{ post.eventDateTime }}
+                    </h6>
+                    {% endif %}
+                    <p class="card-text">{{ post.body }}</p>
+                    <small>Fecha de creación: {{ post.created }}</small>
+                    <br>
+                    <small>Creado por: {{ post.user.username }}</small>
+                    {% if user.is_authenticated %}
+                        <div class="row mt-3">
+                            <div class="col">
+                                <a class="btn form-button-teal" href="{% url 'posts:edit' post.pk %}">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="btn form-button-teal" role="delete" href="{% url 'posts:delete' post.pk %}">
+                                    Eliminar <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -70,22 +76,22 @@
 
                 let $loading = showLoading();
 
-                $.get($(this).attr('href'), function (html) {
-                    $.confirm({
-                        type: 'red',
-                        columnClass: 'medium',
-                        icon: 'fas fa-exclamation-triangle',
-                        title: 'Attention!',
-                        content: html,
-                        buttons: {
-                            back: {
-                                text: '<i class="fas fa-chevron-left mr-2"></i> Back'
-                            },
-                            accept: {
-                                btnClass: 'btn-danger',
-                                text: 'Delete <i class="fas fa-trash ml-2"></i>',
-                                action: function () {
-                                    let $loading = showLoading();
+            $.get($(this).attr('href'), function(html) {
+                $.confirm({
+                    type: 'red',
+                    columnClass: 'medium',
+                    icon: 'fas fa-exclamation-triangle',
+                    title: '¡Atención!',
+                    content: html,
+                    buttons: {
+                        back: { 
+                            text: '<i class="fas fa-chevron-left mr-2"></i> Regresar'
+                        },
+                        accept: {
+                            btnClass: 'btn-danger',
+                            text: 'Eliminar <i class="fas fa-trash ml-2"></i>',
+                            action: function() {
+                                let $loading = showLoading();
 
                                     this.$content.find('form').submit();
                                 }

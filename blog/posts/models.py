@@ -12,3 +12,5 @@ class Post(models.Model):
     facebookLiveVideoLink = models.CharField(max_length=200, blank=True)
     created = models.DateTimeField(auto_now_add = True)
     lastUpdated = models.DateTimeField(auto_now = True)
+    eventDateTime = models.DateTimeField(null=True,blank =True,auto_now_add=False, auto_now=False)
+    eventType= models.IntegerField(blank =True)

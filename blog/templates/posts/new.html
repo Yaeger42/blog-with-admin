@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Create a new post {% endblock %}
+{% block title %} Crear una publicación {% endblock %}
 
 {% block container %}
     <div class="row justify-content-center">
@@ -10,19 +10,21 @@
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="user" value="{{ user.pk}}" />
-                        <h4 class="card-info-label mb-3">Create a new post</h4>
+                        {% csrf_token %}
+                        <input type="hidden" id="id_eventType" name="eventType" value="1">
+                        <h4 class="card-info-label mb-3">Crear nueva publicación</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_title">
-                                        <i class="fas fa-bookmark"></i> Title
+                                        <i class="fas fa-bookmark"></i> Título
                                     </label>
                                     <input
                                         id="id_title"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="title"
-                                        placeholder="Title"
+                                        placeholder="Título"
                                     >
                                     <div class="invalid-feedback">
                                         {% for error in form.title.errors %}{{ error }}{% endfor %}
@@ -30,14 +32,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="id_category">
-                                        <i class="fas fa-tag"></i> Category
+                                        <i class="fas fa-tag"></i> Categoría
                                     </label>
                                     <input
                                         id="id_category"
                                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                         type="text"
                                         name="category"
-                                        placeholder="Category"
+                                        placeholder="Categoria"
                                     >
                                     <div class="invalid-feedback">
                                         {% for error in form.category.errors %}{{ error }}{% endfor %}
@@ -74,17 +76,18 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_image">
-                                        <i class="fas fa-image"></i> Image
+                                        <i class="fas fa-image"></i> Imagen
                                     </label>
                                     <input
                                         id="id_image"
                                         class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                                         type="file"
                                         name="image"
-                                        placeholder="image"
+                                        placeholder="imagen"
                                     >
                                     <div class="invalid-feedback">
                                         {% for error in form.image.errors %}{{ error }}{% endfor %}
@@ -94,14 +97,14 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="id_body">
-                                <i class="far fa-keyboard"></i> Body
+                                <i class="far fa-keyboard"></i> Cuerpo
                             </label>
                             <textarea
                                 id="id_body"
                                 class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                                 type="textarea"
                                 name="body"
-                                placeholder="Body"
+                                placeholder="Cuerpo"
                                 rows="15"
                             ></textarea>
                             <div class="invalid-feedback">
@@ -112,7 +115,7 @@
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn form-button-teal">
-                                        Publish! <i class="fas fa-check"></i>
+                                        ¡Publicar! <i class="fas fa-check"></i>
                                     </button>
                                 </div>
                             </div>
