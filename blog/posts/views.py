@@ -25,6 +25,13 @@ class PostsFeedView(ListView):
     paginate_by = 20
     context_object_name = 'posts'
     
+class VideoFeedView(ListView):
+    template_name = 'posts/videofeed.html'
+    model = Post
+    ordering = ('-created')
+    paginate_by = 20
+    context_object_name = 'posts'
+
 class EventsFeedView(ListView):
     template_name = 'posts/eventsfeed.html'
     model = Post
@@ -45,6 +52,9 @@ class EventsCreateView(LoginRequiredMixin, CreateView):
 
 def show_info(request):
     return render(request, "posts/info.html", {})
+    
+def show_contact(request):
+    return render(request, "posts/contact.html", {})
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
