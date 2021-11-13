@@ -2,6 +2,7 @@ from django.urls import path
 
 from posts import views
 from .views import show_info
+from .views import show_contact
 urlpatterns = [
     path(
         route = '',
@@ -12,9 +13,22 @@ urlpatterns = [
         'posts/info', show_info
     ),
     path(
+        'posts/contact', show_contact
+    ),
+    path(
         route = 'posts/eventsfeed/',
         view = views.EventsFeedView.as_view(),
         name = 'eventsfeed'
+    ),
+    path(
+        route = 'posts/eventsfeed/',
+        view = views.EventsFeedView.as_view(),
+        name = 'eventsfeed'
+    ),
+    path(
+        route = 'posts/videofeed/',
+        view = views.VideoFeedView.as_view(),
+        name = 'videofeed'
     ),
     path(
         route = 'posts/events/',
