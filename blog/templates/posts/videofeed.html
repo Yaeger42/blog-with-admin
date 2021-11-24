@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Blog - Inicio{% endblock %}
+{% block title %}Blog - Videos{% endblock %}
 
 {% block container %}
     <div class="row">
         {% for post in posts %} 
             {% if post.eventType == 1 %} 
-                {% if post.facebookVideoLink == '' and post.facebookLiveVideoLink == ''%}  
+                {% if post.facebookVideoLink != '' or post.facebookLiveVideoLink != ''%} 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card bg-wgite mb-3">
                     {% if post.image %}
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-                {% endif %} 
+                {% endif %}  
             {% endif %}  
         {% endfor %}
 
