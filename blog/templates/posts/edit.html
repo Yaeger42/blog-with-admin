@@ -60,15 +60,17 @@
                                 </div>
                                 {% endif %}     
                             </div>
-                            {% if post.image %}
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="id_image">
                                         <i class="fas fa-image"></i> Imagen
                                     </label>
+                                    
                                     <div class="input-group">
-                                        
+                                        {% if post.image%}
                                         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-thumbnail img-thumb">
+                                        {% endif %}
                                         <input
                                             id="id_image"
                                             class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
@@ -77,12 +79,13 @@
                                             placeholder="imagen"
                                         >
                                     </div>
+                                    
                                     <div class="invalid-feedback">
                                         {% for error in form.photo.errors %}{{ error }}{% endfor %}
                                     </div>
                                 </div>        
                             </div>
-                            {% endif %}
+                            
                         </div>
                         {% if post.facebookLiveVideoLink %}
                         <div class="form-group">
